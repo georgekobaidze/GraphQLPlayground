@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GraphQLPlayground.Models;
 
-[Table("platform")]
+[Table("platforms")]
 public class Platform
 {
     [Key]
