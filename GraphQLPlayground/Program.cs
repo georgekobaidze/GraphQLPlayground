@@ -1,4 +1,5 @@
 ﻿using GraphQLPlayground.Data;
+using GraphQLPlayground.GraphQL;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,8 @@ var connectionString = configuration.GetConnectionString("GraphQLPlaygroundConne
 builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDbContext>(opt => opt.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
+builder.Services.AddGraphQLServer().AddQueryType<Query>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -20,5 +23,10 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseEndpoints(enpoints =>
+{
+    enpoints.MapGraphQL();
+});
 
 app.Run();
