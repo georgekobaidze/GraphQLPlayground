@@ -20,9 +20,9 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
-
 app.MapControllers();
+
+app.UseRouting();
 
 app.UseEndpoints(enpoints =>
 {
