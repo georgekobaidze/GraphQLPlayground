@@ -15,5 +15,5 @@ public class Platform
     public string Name { get; set; }
 
     [Column("license-key")]
-    public string LicenseKey { get; set; }
+    public string? LicenseKey { get; set; }
 }
