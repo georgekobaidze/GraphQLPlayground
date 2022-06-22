@@ -1,4 +1,5 @@
-﻿using GraphQLPlayground.Data;
+﻿using GraphQL.Server.Ui.Voyager;
+using GraphQLPlayground.Data;
 using GraphQLPlayground.GraphQL;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,5 +29,10 @@ app.UseEndpoints(enpoints =>
 {
     enpoints.MapGraphQL();
 });
+
+app.UseGraphQLVoyager(new VoyagerOptions
+{
+    GraphQLEndPoint = "/graphql"
+}, "/graphql-voyager");
 
 app.Run();
