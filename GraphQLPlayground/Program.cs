@@ -13,7 +13,10 @@ var connectionString = configuration.GetConnectionString("GraphQLPlaygroundConne
 builder.Services.AddControllers();
 builder.Services.AddDbContextFactory<AppDbContext>(opt => opt.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
-builder.Services.AddGraphQLServer().AddQueryType<Query>();
+builder.Services
+    .AddGraphQLServer()
+    .AddQueryType<Query>()
+    .AddProjections();
 
 var app = builder.Build();
 
