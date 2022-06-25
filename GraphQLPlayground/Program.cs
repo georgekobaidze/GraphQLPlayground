@@ -1,6 +1,7 @@
 ﻿using GraphQL.Server.Ui.Voyager;
 using GraphQLPlayground.Data;
 using GraphQLPlayground.GraphQL;
+using GraphQLPlayground.GraphQL.Platforms;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,7 @@ builder.Services.AddDbContextFactory<AppDbContext>(opt => opt.UseMySql(connectio
 
 builder.Services
     .AddGraphQLServer()
+    .AddType<PlatformType>()
     .AddQueryType<Query>()
     .AddProjections();
 
