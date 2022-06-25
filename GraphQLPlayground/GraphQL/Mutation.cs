@@ -1,4 +1,5 @@
 ﻿using GraphQLPlayground.Data;
+using GraphQLPlayground.GraphQL.Commands;
 using GraphQLPlayground.GraphQL.Platforms;
 using GraphQLPlayground.Models;
 
@@ -18,5 +19,21 @@ public class Mutation
         await context.SaveChangesAsync();
 
         return new AddPlatformPayload(platform);
+    }
+
+    [UseDbContext(typeof(AppDbContext))]
+    public async Task<AddCommandPayload> AddCommandAsync(AddCommandInput input, [ScopedService] AppDbContext context)
+    {
+        var command = new Command
+        {
+            HowTo = input.HowTo,
+            CommandLine = input.CommandLine,
+            PlatformId = input.PlatformId
+        };
+
+        context.Commands.Add(command);
+        await context.SaveChangesAsync();
+
+        return new AddCommandPayload(command);
     }
 }
