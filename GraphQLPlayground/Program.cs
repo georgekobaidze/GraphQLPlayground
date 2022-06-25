@@ -20,6 +20,7 @@ builder.Services
     .AddType<PlatformType>()
     .AddType<CommandType>()
     .AddQueryType<Query>()
+    .AddMutationType<Mutation>()
     .AddFiltering()
     .AddSorting();
 
