@@ -21,16 +21,16 @@ builder.Services
     .AddType<CommandType>()
     .AddQueryType<Query>()
     .AddMutationType<Mutation>()
+    .AddSubscriptionType<Subscription>()
     .AddFiltering()
-    .AddSorting();
+    .AddSorting()
+    .AddInMemorySubscriptions();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
-app.UseHttpsRedirection();
-
-app.MapControllers();
+app.UseWebSockets();
 
 app.UseRouting();
 
