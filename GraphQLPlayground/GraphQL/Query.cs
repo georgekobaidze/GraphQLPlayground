@@ -7,5 +7,9 @@ public class Query
 {
     [UseDbContext(typeof(AppDbContext))]
     [UseProjection]
-    public IQueryable<Platform> GetPlatform([ScopedService] AppDbContext context) => context.Platforms;
+    public IQueryable<Platform> GetPlatforms([ScopedService] AppDbContext context) => context.Platforms;
+
+    [UseDbContext(typeof(AppDbContext))]
+    [UseProjection]
+    public IQueryable<Command> GetCommands([ScopedService] AppDbContext context) => context.Commands;
 }
